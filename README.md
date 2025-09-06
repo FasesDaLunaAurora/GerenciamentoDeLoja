@@ -156,6 +156,15 @@ Antes de rodar o projeto localmente, você precisa ter instalado:
   - Para versionamento e push ao GitHub.  
   - Verifique com: `git --version`
 
+- **FastAPI**  
+  - Para funcionamento do back-end.  
+  - Instale com: `pip install fastapi`
+ 
+- **Uvicorn**  
+  - Para rodar as APIs localmente.  
+  - Instale com: `pip install uvicorn`
+  - Deploy local: `uvicorn main:app --reload`
+    
 - **Docker** e **Docker Compose** (recomendado)  
   - Para rodar o banco de dados e ambiente isolado.  
   - Verifique com: `docker --version` e `docker compose version` (ou `docker-compose --version`)
