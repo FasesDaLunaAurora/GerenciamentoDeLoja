@@ -163,6 +163,7 @@ Antes de rodar o projeto localmente, você precisa ter instalado:
 - **Uvicorn**  
   - Para rodar as APIs localmente.  
   - Instale com: `pip install uvicorn`
+  - Deploy local: `uvicorn main:app --reload`
     
 - **Docker** e **Docker Compose** (recomendado)  
   - Para rodar o banco de dados e ambiente isolado.  
