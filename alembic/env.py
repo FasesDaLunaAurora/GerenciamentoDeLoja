@@ -9,8 +9,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 
 # importa Base e modelos
 from src.db import Base
-from src.models.insumo_model import Insumo  # garante que Alembic veja a tabela Insumo
-
+from src.models.insumo_model import Insumo, CategoriaInsumo  # garante que Alembic veja a tabela Insumo
+from src.models.cesta_model import Cesta, cesta_insumo_table, CategoriaCesta  # garante que Alembic veja a tabela Insumo
 # metadata para autogenerate
 target_metadata = Base.metadata
 

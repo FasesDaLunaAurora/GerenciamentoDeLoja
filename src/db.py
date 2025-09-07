@@ -1,21 +1,18 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-import os
+from sqlalchemy import create_engine # cria o engine do banco
+from sqlalchemy.orm import sessionmaker, declarative_base # sessionmaker cria sessões, declarative_base é a base para os modelos
+import os # para variáveis de ambiente
 
-# URL do banco de dados (pegando do .env ou fixa)
+# URL do banco de dados (pegando do .env ou, caso não consifa, pega fixa)
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql+psycopg2://loja:loja123@localhost:5432/gerenciamento"
 )
 
-# Cria o engine
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=True) # conecta ao banco e habilita logging de SQL
 
-# Cria a fábrica de sessões
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine) # cria sessões vinculadas ao engine
 
-# Base para os modelos
-Base = declarative_base()
+Base = declarative_base() # base para os modelos
 
 
 # Dependência para injeção (FastAPI ou uso manual)
