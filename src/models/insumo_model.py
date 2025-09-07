@@ -1,11 +1,23 @@
-class Insumo:
-    _id_counter = 1
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
+from src.db import Base
 
-    def __init__(self, nome: str, categoria: str, preco: float, unidade: str, quantidade: int):
-        self.id = Insumo._id_counter
-        Insumo._id_counter += 1
-        self.nome = nome
-        self.categoria = categoria
-        self.preco = preco
-        self.unidade = unidade
-        self.quantidade = quantidade
+class CategoriaInsumo(Base):
+    __tablename__ = "categoria_insumo"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    nome = Column(String, nullable=False, unique=True)
+
+    insumos = relationship("Insumo", back_populates="categoria")
+
+class Insumo(Base):
+    __tablename__ = "insumo"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    nome = Column(String, nullable=False)
+    categoria_id = Column(Integer, ForeignKey("categoria_insumo.id"), nullable=False)
+    preco_custo = Column(Float, nullable=False)
+    preco_venda = Column(Float, nullable=False)
+    quantidade_estoque = Column(Integer, default=0)
+
+    categoria = relationship("CategoriaInsumo", back_populates="insumo")
