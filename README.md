@@ -10,12 +10,13 @@ Aplicativo web para gestão de uma loja de cestas de presente, para uso real no 
 
 - Backend: Python + FastAPI
 - Frontend: React
-- Banco de Dados: PostgreSQL
+- Banco de Dados: PostgreSQL, conexão com banco via SQLAlchemy
 - Testes: Pytest
 - Validação: Pydantic
-- Documentação automática: Swagger (nativo no FastAPI)
-- Containerização: Docker + Docker Compose
-- Versionamento: GitHub com CI/CD (GitHub Actions)
+- Migrações: Alembic
+- Documentação automática: Swagger nativo no FastAPI
+- Containerização: Docker
+- Versionamento: GitHub
 - Deploy: Render
 
 ## 🗂 Estrutura do Projeto
