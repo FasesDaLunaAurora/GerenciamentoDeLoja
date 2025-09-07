@@ -25,7 +25,7 @@ O projeto segue uma organização modular, separando **models, services e contro
 
 ```bash
 📁 nome-do-projeto
-   ├── 📁 src                # Código-fonte principal
+   ├── 📁 src               
    │   ├── 📁 api            # Controllers / rotas da API
    │   │   ├── insumos.py
    │   │   └── cestas.py
