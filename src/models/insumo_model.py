@@ -20,4 +20,4 @@ class Insumo(Base):
     preco_venda = Column(Float, nullable=False)
     quantidade_estoque = Column(Integer, default=0)
 
-    categoria = relationship("CategoriaInsumo", back_populates="insumo")
+    categoria = relationship("CategoriaInsumo", back_populates="insumos")

@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from src.models.cesta_model import Cesta, cesta_insumo_table, CategoriaCesta
 from src.models.insumo_model import Insumo
 from typing import Optional, List
+from sqlalchemy import delete
 
 MARGEM_LUCRO_PADRAO = 0.2
 IMPOSTO_PADRAO = 0.1
@@ -79,7 +80,7 @@ def atualizar_cesta(db: Session, cesta_id: int, dados: dict) -> Optional[Cesta]:
         insumos = db.query(Insumo).filter(Insumo.id.in_(insumos_quantidade.keys())).all()
 
         # Remove relações antigas
-        db.execute(cesta_insumo_table.delete().where(cesta_insumo_table.c.cesta_id == cesta.id))
+        db.execute(delete(cesta_insumo_table).where(cesta_insumo_table.c.cesta_id == cesta.id))
 
         # Insere novas relações
         for insumo in insumos:
@@ -106,7 +107,20 @@ def deletar_cesta(db: Session, cesta_id: int) -> bool:
         return False
 
     # Remove relações
-    db.execute(cesta_insumo_table.delete().where(cesta_insumo_table.c.cesta_id == cesta.id))
+    db.execute(delete(cesta_insumo_table).where(cesta_insumo_table.c.cesta_id == cesta.id))
     db.delete(cesta)
     db.commit()
     return True
+
+def listar_categorias_cesta(db: Session) -> List[CategoriaCesta]:
+    return db.query(CategoriaCesta).all()
+
+def criar_categoria_cesta(db: Session, nome: str) -> CategoriaCesta:
+    categoria = CategoriaCesta(nome=nome)
+    db.add(categoria)
+    db.commit()
+    db.refresh(categoria)
+    return categoria
+
+def buscar_categoria_cesta(db: Session, categoria_id: int) -> Optional[CategoriaCesta]:
+    return db.query(CategoriaCesta).filter(CategoriaCesta.id == categoria_id).first()

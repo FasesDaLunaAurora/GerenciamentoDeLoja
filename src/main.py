@@ -1,21 +1,35 @@
-from fastapi import FastAPI # inicializa o FastAPI
-from src.routers.insumo_router import router as insumo_router # importa o roteador de insumos
-from src.routers.cesta_router import router as cesta_router # importa o roteador de cestas
-from fastapi.middleware.cors import CORSMiddleware # importa middleware CORS para permitir requisições de diferentes origens
+from fastapi import FastAPI
+from src.routers.insumo_router import router as insumo_router
+from src.routers.cesta_router import router as cesta_router
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Gerenciador de Loja") # cria a aplicação Gerenciador de Loja
+app = FastAPI(
+    title="Gerenciador de Loja",
+    description="API para gestão de loja de cestas de presente",
+    version="1.0.0"
+)
 
-app.include_router(insumo_router) # adiciona o roteador de insumos à aplicação
-app.include_router(cesta_router) # adiciona o roteador de cestas à aplicação
-
+# Configuração CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ajustar em produção
+    allow_origins=["*"],  # Em produção, especificar domínios permitidos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-    
-@app.get("/") # rota raiz para verificar se a API está funcionando
+
+# Incluir roteadores
+app.include_router(insumo_router, prefix="/api/v1")
+app.include_router(cesta_router, prefix="/api/v1")
+
+@app.get("/")
 async def home() -> dict:
-    return {"message": "API funcionando! Use /docs para testar os endpoints."}
+    return {
+        "message": "API Gerenciador de Loja funcionando!",
+        "docs": "/docs",
+        "version": "1.0.0"
+    }
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}

@@ -146,6 +146,8 @@ Crie e ative o ambiente virtual, instale as dependências de desenvolvimento e e
 
 ## 🛠️ Instalação e Execução
 
+### Pré-requisitos
+
 Antes de rodar o projeto localmente, você precisa ter instalado:
 
 - **Python 3.10+** (recomendado 3.11)  
@@ -183,6 +185,92 @@ Antes de rodar o projeto localmente, você precisa ter instalado:
 - **Recomendado (ferramentas dev)**  
   - Editor: **VSCode** (ou outro de sua preferência)  
   - (Opcional) **poetry** para gerenciamento de dependências e ambiente virtual, ou use `python -m venv` + `pip`.
+
+### Instalação
+
+1. **Clone o repositório:**
+```bash
+git clone <url-do-repositorio>
+cd GerenciamentoDeLoja
+```
+
+2. **Crie e ative um ambiente virtual:**
+```bash
+python -m venv venv
+
+# No Windows
+venv\Scripts\activate
+
+# No Linux/Mac
+source venv/bin/activate
+```
+
+3. **Instale as dependências:**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Configure o banco de dados:**
+
+**Opção 1: Usando Docker (Recomendado)**
+```bash
+docker-compose up -d db
+```
+
+**Opção 2: PostgreSQL local**
+- Instale PostgreSQL
+- Crie um banco chamado `gerenciamento`
+- Crie um usuário `loja` com senha `loja123`
+
+5. **Execute as migrações:**
+```bash
+alembic upgrade head
+```
+
+6. **Popule o banco com dados iniciais (opcional):**
+```bash
+python src/populate_db.py
+```
+
+7. **Execute a aplicação:**
+```bash
+uvicorn src.main:app --reload
+```
+
+A API estará disponível em: http://localhost:8000
+Documentação Swagger: http://localhost:8000/docs
+
+### Usando Docker Compose (Completo)
+
+Para rodar toda a aplicação com Docker:
+
+```bash
+docker-compose up --build
+```
+
+### Endpoints Principais
+
+**Insumos:**
+- `GET /api/v1/insumos/` - Listar insumos
+- `POST /api/v1/insumos/` - Criar insumo
+- `GET /api/v1/insumos/{id}` - Buscar insumo
+- `PATCH /api/v1/insumos/{id}` - Atualizar insumo
+- `DELETE /api/v1/insumos/{id}` - Deletar insumo
+
+**Categorias de Insumos:**
+- `GET /api/v1/insumos/categorias/` - Listar categorias
+- `POST /api/v1/insumos/categorias/` - Criar categoria
+
+**Cestas:**
+- `GET /api/v1/cestas/` - Listar cestas
+- `POST /api/v1/cestas/` - Criar cesta
+- `GET /api/v1/cestas/{id}` - Buscar cesta
+- `PATCH /api/v1/cestas/{id}` - Atualizar cesta
+- `DELETE /api/v1/cestas/{id}` - Deletar cesta
+
+**Categorias de Cestas:**
+- `GET /api/v1/cestas/categorias/` - Listar categorias
+- `POST /api/v1/cestas/categorias/` - Criar categoria
 
 **Variáveis de ambiente mínimas (serão documentadas na seção de instalação):**
 - `DATABASE_URL` (ex.: `postgresql://user:pass@localhost:5432/dbname`)
