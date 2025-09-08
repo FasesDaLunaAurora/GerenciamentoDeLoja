@@ -11,6 +11,7 @@ Aplicativo web para gestão de uma loja de cestas de presente, para uso real no 
 - Backend: Python + FastAPI
 - Frontend: React
 - Banco de Dados: PostgreSQL, conexão com banco via SQLAlchemy
+- Servidor ASGI: Uvicorn
 - Testes: Pytest
 - Validação: Pydantic
 - Migrações: Alembic
@@ -54,7 +55,7 @@ O projeto segue uma organização modular, separando **models, services e contro
 ## ✅ Funcionalidades (MVP)
 
 - [ ] **CRUD de Insumos**
-  - Cadastrar insumos com nome, categoria, preço unitário, unidade de medida e quantidade em estoque.
+  - Cadastrar insumos com nome, categoria, preço custo, preço venda e quantidade em estoque.
   - Editar informações de insumos existentes.
   - Listar todos os insumos.
   - Remover insumos.
@@ -70,7 +71,7 @@ O projeto segue uma organização modular, separando **models, services e contro
   - Documentação automática via **Swagger** (nativa no FastAPI).
 
 - [ ] **Banco de Dados**
-  - Integração com banco relacional (PostgreSQL ou SQLite para ambiente local).
+  - Integração com banco relacional (PostgreSQL).
   - Migrações de schema com **Alembic**.
 
 - [ ] **Validação de Dados**
@@ -84,7 +85,7 @@ O projeto segue uma organização modular, separando **models, services e contro
   - Arquivo `.env.example` para referência.
 
 - [ ] **Containerização**
-  - Suporte a **Docker** e **Docker Compose** para execução da API e banco de dados.
+  - Suporte a **Docker** para execução da API e banco de dados.
 
 
 ## 📌 Backlog
