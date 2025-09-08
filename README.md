@@ -25,29 +25,30 @@ O projeto segue uma organização modular, separando **models, services e contro
 
 ```bash
 📁 nome-do-projeto
+   ├── 📁 alembic
+   │   └── env.py
    ├── 📁 src               
-   │   ├── 📁 api            # Controllers / rotas da API
-   │   │   ├── insumos.py
-   │   │   └── cestas.py
-   │   ├── 📁 models         # Modelos do banco de dados (SQLAlchemy)
-   │   │   ├── insumo.py
-   │   │   └── cesta.py
-   │   ├── 📁 services       # Lógica de negócio separada dos controllers
+   │   ├── 📁 controllers            
+   │   │   ├── insumo_controller.py
+   │   │   └── cesta_controller.py
+   │   ├── 📁 models         
+   │   │   ├── __init__.py
+   │   │   ├── insumo_model.py
+   │   │   └── cesta_model.py
+   │   ├── 📁 routers       
+   │   │   ├── insumo_router.py
+   │   │   └── cesta_router.py
+   │   ├── 📁 services       
    │   │   ├── insumo_service.py
    │   │   └── cesta_service.py
-   │   ├── 📁 schemas        # Schemas Pydantic para validação de dados
-   │   │   ├── insumo.py
-   │   │   └── cesta.py
-   │   ├── db.py             # Configuração do banco e sessão
-   │   └── main.py           # Ponto de entrada da aplicação
-   │
-   ├── 📁 docs               # Documentação adicional (diagramas, guias)
-   ├── 📁 tests              # Testes unitários e de integração
-   │   ├── test_insumos.py
-   │   └── test_cestas.py
-   ├── 📄 README.md          # Este arquivo
-   ├── 📄 .gitignore         # Arquivos e pastas ignoradas pelo Git
-   └── 📄 requirements.txt   # Dependências do Python (ou package.json / pom.xml para outras stacks)
+   │   ├── 📁 schemas        
+   │   │   ├── insumo_schema.py
+   │   │   └── cesta_schema.py
+   │   ├── __init__.py            
+   │   └── db.py
+   │   └── main.py         
+   ├── 📄 README.md          
+   └── alembic.ini
 ```
 
 ## ✅ Funcionalidades (MVP)
