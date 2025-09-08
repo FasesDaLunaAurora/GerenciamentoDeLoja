@@ -1,4 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from src.db import get_db
 from src.controllers.cesta_controller import (
     listar_cestas_controller,
     criar_cesta_controller,
@@ -37,13 +39,13 @@ def deletar_cesta(cesta_id: int):
 
 # Rotas para categorias de cestas
 @router.get("/categorias/", response_model=List[CategoriaCestaResponse])
-def listar_categorias_cesta():
-    return listar_categorias_cesta_controller()
+def listar_categorias_cesta(db: Session = Depends(get_db)):
+    return listar_categorias_cesta_controller(db)
 
 @router.post("/categorias/", response_model=CategoriaCestaResponse)
-def criar_categoria_cesta(categoria: CategoriaCestaCreate):
-    return criar_categoria_cesta_controller(categoria)
+def criar_categoria_cesta(categoria: CategoriaCestaCreate, db: Session = Depends(get_db)):
+    return criar_categoria_cesta_controller(categoria, db)
 
 @router.get("/categorias/{categoria_id}", response_model=CategoriaCestaResponse)
-def buscar_categoria_cesta(categoria_id: int):
-    return buscar_categoria_cesta_controller(categoria_id)
+def buscar_categoria_cesta(categoria_id: int, db: Session = Depends(get_db)):
+    return buscar_categoria_cesta_controller(categoria_id, db)
