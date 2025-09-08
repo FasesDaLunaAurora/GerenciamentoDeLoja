@@ -46,31 +46,38 @@ O projeto segue uma organização modular, separando **models, services e contro
    │   │   ├── insumo_schema.py
    │   │   └── cesta_schema.py
    │   ├── __init__.py            
-   │   └── db.py
-   │   └── main.py         
-   ├── 📄 README.md          
+   │   ├── db.py
+   │   ├── populate_db.py
+   │   ├── teste_db.py  
+   │   └── main.py    
+   ├── 📄 README.md
+   ├── .gitgnore
+   ├── .env.example
+   ├── docker-compose.yml
+   ├── Dockerfile
+   ├── requirements.txt
    └── alembic.ini
 ```
 
 ## ✅ Funcionalidades (MVP)
 
-- [ ] **CRUD de Insumos**
+- [X] **CRUD de Insumos**
   - Cadastrar insumos com nome, categoria, preço custo, preço venda e quantidade em estoque.
   - Editar informações de insumos existentes.
   - Listar todos os insumos.
   - Remover insumos.
 
-- [ ] **CRUD de Cestas**
+- [X] **CRUD de Cestas**
   - Criar cestas contendo múltiplos insumos e suas respectivas quantidades.
   - Editar informações de cestas existentes.
   - Listar todas as cestas cadastradas.
   - Remover cestas.
 
-- [ ] **API RESTful**
+- [X] **API RESTful**
   - Endpoints organizados e versionados (`/api/v1`).
   - Documentação automática via **Swagger** (nativa no FastAPI).
 
-- [ ] **Banco de Dados**
+- [X] **Banco de Dados**
   - Integração com banco relacional (PostgreSQL).
   - Migrações de schema com **Alembic**.
 
@@ -80,11 +87,11 @@ O projeto segue uma organização modular, separando **models, services e contro
 - [ ] **Testes Automatizados**
   - Testes unitários com **pytest** para rotas principais.
 
-- [ ] **Configuração de Ambiente**
+- [X] **Configuração de Ambiente**
   - Variáveis de ambiente para credenciais e configurações.
   - Arquivo `.env.example` para referência.
 
-- [ ] **Containerização**
+- [X] **Containerização**
   - Suporte a **Docker** para execução da API e banco de dados.
 
 
@@ -276,6 +283,10 @@ docker-compose up --build
 - `DATABASE_URL` (ex.: `postgresql://user:pass@localhost:5432/dbname`)
 - `SECRET_KEY` (chave para tokens/JWT)
 - `ENV=development|production`
+
+## Acesso (local)
+
+http://127.0.0.1:8000/docs#/
 
 ## 📄 Licença
 
