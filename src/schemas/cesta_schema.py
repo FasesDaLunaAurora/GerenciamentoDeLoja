@@ -1,23 +1,33 @@
 from pydantic import BaseModel
 from typing import Dict, Optional
 
+class CategoriaCestaCreate(BaseModel):
+    nome: str
+
+class CategoriaCestaResponse(BaseModel):
+    id: int
+    nome: str
+
+    class Config:
+        from_attributes = True
+
 class CestaCreate(BaseModel):
     nome: str
-    categoria_id: int  # agora referenciando a tabela CategoriaCesta
-    insumos_quantidade: Dict[int, int]  # {insumo_id: quantidade}
+    categoria_id: int
+    insumos_quantidade: Dict[int, int]
 
 class CestaUpdate(BaseModel):
-    nome: Optional[str]
-    categoria_id: Optional[int]
-    insumos_quantidade: Optional[Dict[int, int]]
+    nome: Optional[str] = None
+    categoria_id: Optional[int] = None
+    insumos_quantidade: Optional[Dict[int, int]] = None
 
 class CestaOut(BaseModel):
     id: int
     nome: str
-    categoria: str  # para saída, podemos exibir o nome da categoria
+    categoria_id: int
     valor_custo: float
     valor_venda_minimo: float
     disponivel: bool
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -1,8 +1,8 @@
-import sys # para manipular o path
-import os # para manipular o path
-from logging.config import fileConfig # para configurar logging
-from sqlalchemy import engine_from_config, pool # para criar o engine do banco
-from alembic import context # contexto do Alembic
+import sys
+import os
+from logging.config import fileConfig
+from sqlalchemy import engine_from_config, pool
+from alembic import context
 
 # adiciona a raiz do projeto ao path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
@@ -10,8 +10,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 # importa Base e modelos
 from src.db import Base
 from src.models.insumo_model import Insumo, CategoriaInsumo  # garante que Alembic veja a tabela Insumo
-from src.models.cesta_model import Cesta, cesta_insumo_table, CategoriaCesta  # garante que Alembic veja a tabela Cesta
-# metadata para autogenerate das migrações do Alembic
+from src.models.cesta_model import Cesta, cesta_insumo_table, CategoriaCesta  # garante que Alembic veja a tabela Insumo
+# metadata para autogenerate
 target_metadata = Base.metadata
 
 # Configuração do Alembic
