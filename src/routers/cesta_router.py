@@ -15,7 +15,7 @@ router = APIRouter(prefix="/cestas", tags=["Cestas"])
 def listar_cestas():
     return listar_cestas_controller()
 
-@router.post("/", response_model=CestaOut)
+@router.post("/", response_model=CestaOut, status_code=201)
 def criar_cesta(cesta_data: CestaCreate):
     return criar_cesta_controller(cesta_data)
 
@@ -27,6 +27,6 @@ def buscar_cesta(cesta_id: int):
 def atualizar_cesta(cesta_id: int, dados: CestaUpdate):
     return atualizar_cesta_controller(cesta_id, dados)
 
-@router.delete("/{cesta_id}")
+@router.delete("/{cesta_id}", status_code=204)
 def deletar_cesta(cesta_id: int):
     return deletar_cesta_controller(cesta_id)

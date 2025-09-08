@@ -1,6 +1,6 @@
-from fastapi import Depends, HTTPException
-from sqlalchemy.orm import Session
-from src.db import get_db
+from fastapi import Depends, HTTPException 
+from sqlalchemy.orm import Session 
+from src.db import get_db 
 from src.services.cesta_service import (
     listar_cestas,
     buscar_cesta,
@@ -8,18 +8,17 @@ from src.services.cesta_service import (
     atualizar_cesta,
     deletar_cesta
 )
-from src.schemas.cesta_schema import CestaCreate, CestaUpdate
+from src.schemas.cesta_schema import CestaCreate, CestaUpdate 
 
-def listar_cestas_controller(db: Session = Depends(get_db)):
-    return listar_cestas(db)
+def listar_cestas_controller(db: Session = Depends(get_db)): 
+    return listar_cestas(db) 
 
 def criar_cesta_controller(cesta_data: CestaCreate, db: Session = Depends(get_db)):
-    # agora passa categoria_id ao invés de categoria
     return criar_cesta(
-        db,
+        db, 
         nome=cesta_data.nome,
-        categoria_id=cesta_data.categoria_id,
-        insumos_quantidade=cesta_data.insumos_quantidade
+        categoria_id=cesta_data.categoria_id, 
+        insumos_quantidade=cesta_data.insumos_quantidade 
     )
 
 def buscar_cesta_controller(cesta_id: int, db: Session = Depends(get_db)):
